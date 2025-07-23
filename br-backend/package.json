@@ -1,0 +1,15 @@
+{
+  "name": "br-backend",
+  "version": "1.0.0",
+  "description": "This is brahma rupa OJT backend server for e-commerce",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dipak Gautam",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
