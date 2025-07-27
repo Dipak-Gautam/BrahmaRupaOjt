@@ -1,14 +1,15 @@
 const express = require("express");
 const route = express.Router();
-const Product = require("../model/productModel");
+const Order = require("../model/orderModel");
 
 route.get("/", async (req, res) => {
   try {
-    const productData = await Product.find();
+    const orderData = await Order.find();
     res
       .status(200)
-      .json({ message: "data fetch sucessfully", data: productData });
+      .json({ message: "data fetch sucessfully", data: orderData });
   } catch (error) {
+    console.log("error");
     res.status(500).json({ message: "Internal server error" });
   }
 });
@@ -16,11 +17,11 @@ route.get("/", async (req, res) => {
 route.post("/", async (req, res) => {
   try {
     const data = req.body;
-    const product = new Product(data);
-    const response = await product.save();
+    const order = new Order(data);
+    const response = await order.save();
     res
       .status(200)
-      .json({ message: "{product Data saved sucessfully", response: response });
+      .json({ message: "{Order Data saved sucessfully", response: response });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
@@ -29,7 +30,7 @@ route.post("/", async (req, res) => {
 route.patch("/", async (req, res) => {
   try {
     const { id, ...updatedData } = req.body;
-    const response = await Product.findByIdAndUpdate(id, updatedData, {
+    const response = await Order.findByIdAndUpdate(id, updatedData, {
       new: true,
     });
     res
@@ -43,8 +44,8 @@ route.patch("/", async (req, res) => {
 route.delete("/", async (req, res) => {
   try {
     const { id } = req.body;
-    await Product.findByIdAndDelete(id);
-    res.status(200).json({ message: "Product deleted sucessfully" });
+    await Order.findByIdAndDelete(id);
+    res.status(200).json({ message: "Order deleted sucessfully" });
   } catch (error) {
     console.log("error", error);
     res.status(500).json({ message: "Internal server error" });
