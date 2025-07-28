@@ -6,7 +6,7 @@ const jwtAuthMiddleWare = (req, res, next) => {
   const token = auth.split(" ")[1];
   if (!token) return res.status(401).json({ message: "Unauthorized" });
   try {
-    const decoded = jwt.verify(token, "hello");
+    const decoded = jwt.verify(token, process.env.secret_key);
     req.user = decoded;
     next();
   } catch (error) {
@@ -15,7 +15,7 @@ const jwtAuthMiddleWare = (req, res, next) => {
 };
 
 const generateJwtToken = (useDetail) => {
-  return jwt.sign(useDetail, "hello");
+  return jwt.sign(useDetail, process.env.secret_key);
 };
 
 module.exports = { jwtAuthMiddleWare, generateJwtToken };

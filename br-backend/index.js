@@ -6,6 +6,7 @@ require("./db.js");
 const cors = require("cors");
 const productRoute = require("./routes/productRoute.js");
 const orderRoute = require("./routes/orderRoutes.js");
+const userRoute = require("./routes/userRoute.js");
 
 app.use(express.json());
 app.use(cors());
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 
 app.use("/product", productRoute);
 app.use("/order", orderRoute);
+app.use("/user", userRoute);
 
 app.listen(PORT, () => {
   console.log("Application running on port", PORT);
