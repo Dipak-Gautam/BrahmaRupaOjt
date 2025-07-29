@@ -58,7 +58,7 @@ route.patch("/", jwtAuthMiddleWare, async (req, res) => {
   try {
     const { prevPassword, currentPassword } = req.body;
     const userId = req.user.id;
-    const user = User.findById(userId);
+    const user = await User.findById(userId);
     if (!(await user.comparePassword(prevPassword))) {
       res.status(502).json({ message: "Invalid password" });
     }
