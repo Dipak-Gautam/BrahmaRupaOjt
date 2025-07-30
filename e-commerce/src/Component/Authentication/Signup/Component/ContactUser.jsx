@@ -7,15 +7,20 @@ const ContactUser = ({ userDetail, setUserDetail, setStage }) => {
   const nameRef = useRef();
   const contactNumberRef = useRef();
   const emailRef = useRef();
+  const errorMessageRef = useRef();
   const handelData = () => {
-    if (nameRef.current?.value == "" || nameRef.current == null) {
+    if (nameRef.current?.value == "" || nameRef.current?.value.length < 3) {
+      errorMessageRef.current = "Name must me at least 3 character long  ";
       setError(1);
+    } else if (emailRef.current?.value == "") {
+      errorMessageRef.current = "Please provide a valid Email";
+      setError(2);
     } else if (
       contactNumberRef.current?.value == "" ||
-      contactNumberRef.current == null
+      contactNumberRef.current?.value.length < 9
     ) {
-      setError(2);
-    } else if (emailRef.current?.value == "" || emailRef.current == null) {
+      errorMessageRef.current = "Number must be at least 10 character";
+
       setError(3);
     } else {
       setError(0);
@@ -28,19 +33,34 @@ const ContactUser = ({ userDetail, setUserDetail, setStage }) => {
         street: "",
         deliveryDescription: "",
       });
+      setStage(1);
     }
   };
 
   return (
     <div>
-      <TextInput label={"Name"} placeholder={"Enter a Name"} ref={nameRef} />
-      <TextInput label={"Email"} placeholder={"Enter a Email"} ref={emailRef} />
+      <TextInput
+        label={"Name"}
+        placeholder={"Enter a Name"}
+        ref={nameRef}
+        err={error == 1 && true}
+        errormessage={errorMessageRef.current}
+      />
+      <TextInput
+        label={"Email"}
+        placeholder={"Enter a Email"}
+        ref={emailRef}
+        err={error == 2 && true}
+        errormessage={errorMessageRef.current}
+      />
       <TextInput
         label={"ContactNumber"}
         placeholder={"Enter a Contact Number"}
         ref={contactNumberRef}
+        err={error == 3 && true}
+        errormessage={errorMessageRef.current}
       />
-      <div>
+      <div className="flex justify-center">
         <OrangeButton title={"Proceed"} onClick={() => handelData()} />
       </div>
     </div>

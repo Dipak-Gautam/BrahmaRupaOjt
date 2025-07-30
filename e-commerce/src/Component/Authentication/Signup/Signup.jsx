@@ -14,7 +14,6 @@ const Signup = ({ setScreen }) => {
     deliveryDescription: "",
   });
   const [stage, setStage] = useState(0);
-  console.log("userdetail", userDetail);
   return (
     <div className="p-3">
       <div className="text-xl font-bold text-orange-500 text-center">
