@@ -42,6 +42,15 @@ const Signup = ({ setScreen }) => {
           />
         )}
       </div>
+      <div className="text-xs text-center font-medium text-gray-500 my-4">
+        Already have an account ?{" "}
+        <span
+          className="text-blue-500 cursor-pointer"
+          onClick={() => setScreen(false)}
+        >
+          Login
+        </span>
+      </div>
     </div>
   );
 };

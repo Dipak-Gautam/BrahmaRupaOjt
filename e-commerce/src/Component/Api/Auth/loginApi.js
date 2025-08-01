@@ -1,13 +1,13 @@
 import SecureFetch from "./ApiConfiguration";
 
-const signupApi = async (userDetail, navigate, setStage, setUserDetail) => {
+const loginApi = async (userInfo, navigate, setErr) => {
   const request = await SecureFetch(
-    "http://localhost:3000/user/signup",
+    "http://localhost:3000/user/login",
     "Post",
     {
       "content-type": "application/json",
     },
-    userDetail
+    userInfo
   );
   const response = await request.json();
   if (request.status == 200) {
@@ -15,16 +15,7 @@ const signupApi = async (userDetail, navigate, setStage, setUserDetail) => {
     localStorage.setItem("userDetail", JSON.stringify(response));
     navigate("/");
   } else {
-    setUserDetail({
-      userName: "",
-      contactNumber: "",
-      email: "",
-      password: "",
-      city: "",
-      street: "",
-      deliveryDescription: "",
-    });
-    setStage(0);
+    setErr(3);
   }
 };
-export default signupApi;
+export default loginApi;

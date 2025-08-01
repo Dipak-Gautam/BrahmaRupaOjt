@@ -25,7 +25,7 @@ const PasswordUser = ({ userDetail, setUserDetail, setStage }) => {
       setError(0);
       let tempUserDetail = userDetail;
       tempUserDetail.password = passwordRef.current.value;
-      signupApi(tempUserDetail, navigate, setStage);
+      signupApi(tempUserDetail, navigate, setStage, setUserDetail);
     }
   };
 
