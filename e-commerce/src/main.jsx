@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import Cart from "./Component/Cart/Cart.jsx";
 import MainAuth from "./Component/Authentication/MainAuth.jsx";
 import DashboardMain from "./Component/Dashboard/DashboardMain.jsx";
+import Setting from "./Component/Setting/Setting.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardMain />,
   },
+  { path: "/setting", element: <Setting /> },
 ]);
 
 createRoot(document.getElementById("root")).render(

@@ -2,19 +2,14 @@ import React from "react";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import { NavLink, useNavigate } from "react-router";
-import { BiLogOut } from "react-icons/bi";
+import { MdOutlineSettings } from "react-icons/md";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    alert("logout sucessfully");
-    navigate("/auth");
-  };
 
   return (
     <div className="flex justify-between items-center   rounded-md p-1 ">
-      <div className="text-3xl font-bold">
+      <div className="text-2xl font-bold">
         <NavLink to={"/"}>
           <img src="./logo2.jpg" alt="" className="w-24 md:w-32" />
         </NavLink>
@@ -30,12 +25,12 @@ const NavBar = () => {
         </div>
         <div>
           <NavLink to="/cart">
-            <MdOutlineShoppingCart className="text-4xl text-gray-600" />
+            <MdOutlineShoppingCart className="text-3xl text-gray-600" />
           </NavLink>
         </div>
-        <div>
-          <BiLogOut className="text-2xl" onClick={() => handleLogout()} />
-        </div>
+        <NavLink to={"/setting"}>
+          <MdOutlineSettings className="text-gray-600 text-3xl" />
+        </NavLink>
       </div>
     </div>
   );
