@@ -11,9 +11,9 @@ const signupApi = async (userDetail, navigate, setStage, setUserDetail) => {
   );
   const response = await request.json();
   if (request.status == 200) {
-    localStorage.setItem("token", response.token);
-    localStorage.setItem("userDetail", JSON.stringify(response));
-    navigate("/");
+    localStorage.setItem("token", response.response.token);
+    localStorage.setItem("userDetail", JSON.stringify(response.response));
+    window.location.href = "/";
   } else {
     setUserDetail({
       userName: "",

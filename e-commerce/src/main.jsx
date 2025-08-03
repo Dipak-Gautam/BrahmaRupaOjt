@@ -4,28 +4,30 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Cart from "./Component/Cart/Cart.jsx";
-import MainAuth from "./Component/Authentication/MainAuth.jsx";
 import DashboardMain from "./Component/Dashboard/DashboardMain.jsx";
 import Setting from "./Component/Setting/Setting.jsx";
+import Home from "./Home.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/dashboard",
+        element: <DashboardMain />,
+      },
+      { path: "/setting", element: <Setting /> },
+    ],
   },
-  {
-    path: "/cart",
-    element: <Cart />,
-  },
-  {
-    path: "/auth",
-    element: <MainAuth />,
-  },
-  {
-    path: "/dashboard",
-    element: <DashboardMain />,
-  },
-  { path: "/setting", element: <Setting /> },
 ]);
 
 createRoot(document.getElementById("root")).render(

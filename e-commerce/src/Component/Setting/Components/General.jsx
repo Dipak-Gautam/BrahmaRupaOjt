@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TextInput from "../../InputFields/TextInput";
 import OrangeButton from "../../Button/OrangeButton";
+import updateUserApi from "../../Api/User/updateUserApi";
 
 const General = () => {
   const data = JSON.parse(localStorage.getItem("userDetail")) || {};
   const nameRef = useRef();
   const emailRef = useRef();
   const contactRef = useRef();
+  const [error, setError] = useState(0);
 
   useEffect(() => {
     if (nameRef.current) nameRef.current.value = data.userName || "";
@@ -15,12 +17,24 @@ const General = () => {
   }, [data]);
 
   const handleUpdate = () => {
-    const updatedData = {
-      userName: nameRef.current.value,
-      email: emailRef.current.value,
-      contactNumber: contactRef.current.value,
-    };
-    console.log("Updated Data:", updatedData);
+    if (nameRef.current?.value == "" || nameRef.current?.value.length < 3) {
+      setError(1);
+    } else if (emailRef.current?.value == "") {
+      setError(2);
+    } else if (
+      contactNumberRef.current?.value == "" ||
+      contactNumberRef.current?.value.length < 9
+    ) {
+      setError(3);
+    } else {
+      setError(0);
+      const updatedData = {
+        userName: nameRef.current.value,
+        email: emailRef.current.value,
+        contactNumber: contactRef.current.value,
+      };
+      updateUserApi(updatedData);
+    }
   };
 
   return (
@@ -31,21 +45,21 @@ const General = () => {
         </div>
         <div>
           <TextInput
-            err={nameRef.current?.value == "" && true}
+            err={error == 1 && true}
             errormessage={"Please provide a valid input"}
             label={"Name"}
             placeholder={"Enter your Name"}
             ref={nameRef}
           />
           <TextInput
-            err={nameRef.current?.value == "" && true}
+            err={error == 2 && true}
             errormessage={"Please provide a valid password"}
             label={"Email"}
             placeholder={"Enter your Name"}
             ref={emailRef}
           />
           <TextInput
-            err={nameRef.current?.value == "" && true}
+            err={error == 3 && true}
             errormessage={"Please provide a valid phone Number"}
             label={"Contact Number"}
             placeholder={"Enter your Contact Number"}

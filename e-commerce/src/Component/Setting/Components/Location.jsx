@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TextInput from "../../InputFields/TextInput";
 import OrangeButton from "../../Button/OrangeButton";
+import updateUserApi from "../../Api/User/updateUserApi";
 
 const Location = () => {
   const data = JSON.parse(localStorage.getItem("userDetail")) || {};
   const cityRef = useRef();
   const streetRef = useRef();
   const deliveryDescriptionRef = useRef();
+  const [error, setError] = useState(0);
 
   useEffect(() => {
     if (cityRef.current) cityRef.current.value = data.city || "";
@@ -16,12 +18,20 @@ const Location = () => {
   }, [data]);
 
   const handleUpdate = () => {
-    const updatedData = {
-      city: cityRef.current.value,
-      street: streetRef.current.value,
-      deliveryDescription: deliveryDescriptionRef.current.value,
-    };
-    console.log("Updated Data:", updatedData);
+    if (cityRef.current?.value == "") {
+      setError(1);
+    } else if (streetRef.current?.value == "") {
+      setError(2);
+    } else if (deliveryDescriptionRef.current?.value == "") {
+      setError(3);
+    } else {
+      const updatedData = {
+        city: cityRef.current.value,
+        street: streetRef.current.value,
+        deliveryDescription: deliveryDescriptionRef.current.value,
+      };
+      updateUserApi(updatedData);
+    }
   };
 
   return (
@@ -32,21 +42,21 @@ const Location = () => {
         </div>
         <div>
           <TextInput
-            err={cityRef.current?.value == "" && true}
+            err={error == 1 && true}
             errormessage={"Please provide a valid city"}
             label={"City"}
             placeholder={"Enter your City"}
             ref={cityRef}
           />
           <TextInput
-            err={streetRef.current?.value == "" && true}
+            err={error == 2 && true}
             errormessage={"Please provide a valid street"}
             label={"Street"}
             placeholder={"Enter your Street"}
             ref={streetRef}
           />
           <TextInput
-            err={deliveryDescriptionRef.current?.value == "" && true}
+            err={error == 3 && true}
             errormessage={"Please provide a valid phone Number"}
             label={"DeliveryDescription"}
             placeholder={"Enter your Delivery description"}

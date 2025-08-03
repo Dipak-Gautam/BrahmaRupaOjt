@@ -69,4 +69,20 @@ route.patch("/", jwtAuthMiddleWare, async (req, res) => {
   }
 });
 
+route.patch("/userDetail", jwtAuthMiddleWare, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { ...updatedData } = req.body;
+    const response = await User.findByIdAndUpdate(userId, updatedData, {
+      new: true,
+    });
+    res
+      .status(200)
+      .json({ message: "profile updated sucessfully", response: response });
+  } catch (error) {
+    console.log("error");
+    res.status(500).json({ message: "Internal server error", error: error });
+  }
+});
+
 module.exports = route;
