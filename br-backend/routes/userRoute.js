@@ -34,9 +34,7 @@ route.post("/login", async (req, res) => {
     if (!user || !(await user.comparePassword(password))) {
       res.status(400).json({ message: "username or password is invalid" });
     }
-    res
-      .status(200)
-      .json({ message: "user login sucessfull", response: user.token });
+    res.status(200).json({ message: "user login sucessfull", response: user });
   } catch (error) {
     console.log("error", error);
     res.status(500).json({ message: "Internal server error", error: error });

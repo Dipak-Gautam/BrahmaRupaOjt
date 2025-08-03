@@ -11,8 +11,9 @@ const loginApi = async (userInfo, navigate, setErr) => {
   );
   const response = await request.json();
   if (request.status == 200) {
-    localStorage.setItem("token", response.token);
-    localStorage.setItem("userDetail", JSON.stringify(response));
+    console.log("response", response);
+    localStorage.setItem("token", response.response.token);
+    localStorage.setItem("userDetail", JSON.stringify(response.response));
     navigate("/");
   } else {
     setErr(3);
