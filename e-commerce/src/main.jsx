@@ -7,6 +7,7 @@ import Cart from "./Component/Cart/Cart.jsx";
 import DashboardMain from "./Component/Dashboard/DashboardMain.jsx";
 import Setting from "./Component/Setting/Setting.jsx";
 import Home from "./Home.jsx";
+import AddProduct from "./Component/AddProduct/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         element: <DashboardMain />,
       },
       { path: "/setting", element: <Setting /> },
+      { path: "/Product", element: <AddProduct /> },
     ],
   },
 ]);

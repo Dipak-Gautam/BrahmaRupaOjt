@@ -1,13 +1,28 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import TextInput from "../../InputFields/TextInput";
 import OrangeButton from "../../Button/OrangeButton";
+import changePassword from "../../Api/User/changePassword";
 
 const Password = () => {
   const token = localStorage.getItem("token");
   const prevPasswordRef = useRef();
   const currentPasswordRef = useRef();
+  const [error, setError] = useState(0);
 
-  const handleUpdate = () => {};
+  const handleUpdate = () => {
+    if (prevPasswordRef.current?.value.length < 8) {
+      setError(1);
+    } else if (currentPasswordRef.current?.value.length < 8) {
+      setError(2);
+    } else {
+      setError(0);
+      const tempData = {
+        prevPassword: prevPasswordRef.current.value,
+        currentPassword: currentPasswordRef.current.value,
+      };
+      changePassword(tempData);
+    }
+  };
 
   return (
     <div className="border bg-slate-100 font-medium flex p-6 m-3 md:mx-10 rounded-md border-gray-300 shadow-lg shadow-gray-700/50 gap-8 hover:cursor-pointer hover:border-gray-400 hover:shadow-black/50 hover:bg-slate-50">
@@ -17,12 +32,14 @@ const Password = () => {
         </div>
         <div>
           <TextInput
+            err={error == 1 && true}
             errormessage={"Please provide password"}
-            label={"Password"}
+            label={"Old Password"}
             placeholder={"Enter your Old Password"}
             ref={prevPasswordRef}
           />
           <TextInput
+            err={error == 2 && true}
             errormessage={"Please provide a valid password"}
             label={"New Password"}
             placeholder={"Enter your newPassword"}
