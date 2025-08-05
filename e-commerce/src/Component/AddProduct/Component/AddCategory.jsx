@@ -17,9 +17,10 @@ const AddCategory = ({ setProductDetail, productDetail }) => {
         onChange={handleCategoryChange}
       >
         <option value="">Select Category</option>
-        <option value="Electronics">Electronics</option>
-        <option value="Phones">Phones</option>
-        <option value="Laptops">Laptops</option>
+        <option value="Lunch">Lunch</option>
+        <option value="Snack">Snack</option>
+        <option value="Dinner">Dinner</option>
+        <option value="Beverage">Beverage</option>
       </select>
     </div>
   );

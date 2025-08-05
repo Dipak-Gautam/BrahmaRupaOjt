@@ -1,9 +1,9 @@
 const productDataApi = async (setMainData, setProductDta) => {
-  const request = await fetch("https://dummyjson.com/recipes");
+  const request = await fetch("http://localhost:3000/product");
   const response = await request.json();
   if (request.status == 200) {
-    setMainData(response.recipes);
-    setProductDta(response.recipes);
+    setMainData(response.data);
+    setProductDta(response.data);
   }
 };
 export default productDataApi;

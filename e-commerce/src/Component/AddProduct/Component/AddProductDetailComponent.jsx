@@ -9,7 +9,7 @@ const AddProductDetailComponent = ({ setProductDetail, productDetail }) => {
       <ProductInputField
         setProductDetail={setProductDetail}
         label={"Name"}
-        name={"name"}
+        name={"pName"}
         productDetail={productDetail}
       />
 
@@ -32,6 +32,12 @@ const AddProductDetailComponent = ({ setProductDetail, productDetail }) => {
       />
       <AddCategory
         setProductDetail={setProductDetail}
+        productDetail={productDetail}
+      />
+      <ProductInputField
+        setProductDetail={setProductDetail}
+        label={"Description"}
+        name={"description"}
         productDetail={productDetail}
       />
       <ProductInputField

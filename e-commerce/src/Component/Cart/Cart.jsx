@@ -9,13 +9,12 @@ const Cart = () => {
   const [visible, setVisible] = useState(false);
   let data = localStorage.getItem("cart1");
   const [cartData, setCartData] = useState(JSON.parse(data) || []);
-
   return (
     <div className="p-2 md:px-5 flex flex-col h-[100vh]">
       <NavBar />
       <div className="mx-5  space-y-5 flex-1 overflow-auto">
         {cartData.map((item) => (
-          <CartCard data={item} key={item.id} setCartData={setCartData} />
+          <CartCard data={item} key={item._id} setCartData={setCartData} />
         ))}
       </div>
       <hr className=" my-3 md:my-5" />

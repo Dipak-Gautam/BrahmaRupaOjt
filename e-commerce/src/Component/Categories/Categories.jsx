@@ -15,7 +15,7 @@ const Categories = ({ mainData, setProductData }) => {
       setProductData(mainData);
       return;
     }
-    let tempArray = mainData.filter((item) => item.mealType[0] == category);
+    let tempArray = mainData.filter((item) => item.category == category);
     setProductData(tempArray);
   };
   return (

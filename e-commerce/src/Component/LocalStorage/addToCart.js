@@ -8,7 +8,7 @@ const addToCart = (productData) => {
     localStorage.setItem("cart1", JSON.stringify(tempArray));
   } else {
     let tempArray = JSON.parse(localData);
-    let tempCheck = tempArray.filter((item) => item.id == productData.id);
+    let tempCheck = tempArray.filter((item) => item._id == productData._id);
     if (tempCheck.length != 0) {
       return;
     }

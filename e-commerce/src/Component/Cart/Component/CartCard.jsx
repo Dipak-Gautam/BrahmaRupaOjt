@@ -19,9 +19,9 @@ const CartCard = ({ data, setCartData }) => {
       <div className="flex p-4 justify-between w-full gap-2 items-center">
         <div className="space-y-1 md:space-y-2">
           <p className="text-gray-800 font-semibold text-base md:text-2xl">
-            {data.name}
+            {data.pName}
           </p>
-          <p className="text-gray-400 text-xs md:text-base">{data.tags[0]}</p>
+          <p className="text-gray-400 text-xs md:text-base">{data.category}</p>
           <Quantity data={data} setCartData={setCartData} />
         </div>
         <div className="space-y-3">
@@ -29,7 +29,7 @@ const CartCard = ({ data, setCartData }) => {
             <StarCalc rating={Math.floor(data.rating)} />
           </div>
           <p className=" text-lg md:text-2xl font-bold text-orange-600">
-            Rs. {data.caloriesPerServing}
+            Rs. {data.price}
           </p>
         </div>
       </div>

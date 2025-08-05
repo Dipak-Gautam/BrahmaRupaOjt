@@ -4,6 +4,7 @@ import HeroSection from "./Component/HeroSection/HeroSection";
 import NavBar from "./Component/NavBar/NavBar";
 import Product from "./Component/Product/Product";
 import productDataApi from "./Component/Api/productData.api";
+import { data } from "react-router";
 
 function App() {
   const [mainData, setMainData] = useState([]);
@@ -11,6 +12,7 @@ function App() {
   useEffect(() => {
     productDataApi(setMainData, setProductData);
   }, []);
+  console.log("data", productData);
   return (
     <div className="p-2 px-5">
       <NavBar />

@@ -2,22 +2,26 @@ import React, { useState } from "react";
 import Card from "../Product/component/Card";
 import AddProductDetailComponent from "./Component/AddProductDetailComponent";
 import { useLocation } from "react-router-dom";
+import OrangeButton from "../Button/OrangeButton";
+import addProductApi from "../Api/product/AddProductApi";
 
 const AddProduct = () => {
   const location = useLocation();
   const data = location.state;
   const temp = {
-    name: "",
+    pName: "",
     features: [],
-    caloriesPerServing: 0,
+    price: 0,
     image: "",
     rating: 0,
-    mealType: [],
+    category: "",
+    description: "",
   };
 
-  console.log("data", data);
-
   const [productDetail, setProductDetail] = useState(data ? data : temp);
+  const handelAddProduct = () => {
+    addProductApi(productDetail, setProductDetail);
+  };
 
   return (
     <div className="h-[100xh] p-5 flex flex-col px-20">
@@ -45,6 +49,12 @@ const AddProduct = () => {
             productDetail={productDetail}
           />
         </div>
+      </div>
+      <div>
+        <OrangeButton
+          title={"Add Product"}
+          onClick={() => handelAddProduct()}
+        />
       </div>
     </div>
   );
