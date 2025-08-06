@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     productDataApi(setMainData, setProductData);
   }, []);
-  console.log("data", productData);
+  // console.log("data", productData);
   return (
     <div className="p-2 px-5">
       <NavBar />

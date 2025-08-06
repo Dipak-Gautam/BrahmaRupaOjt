@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import Card from "../Product/component/Card";
 import AddProductDetailComponent from "./Component/AddProductDetailComponent";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import OrangeButton from "../Button/OrangeButton";
 import addProductApi from "../Api/product/AddProductApi";
+import { MdKeyboardBackspace } from "react-icons/md";
+import updateProductApi from "../Api/product/updateProductApi";
 
 const AddProduct = () => {
+  // const navigate = useNavigate();
   const location = useLocation();
   const data = location.state;
+  console.log("data from navigate", data);
   const temp = {
     pName: "",
     features: [],
@@ -23,8 +27,20 @@ const AddProduct = () => {
     addProductApi(productDetail, setProductDetail);
   };
 
+  const handelUpdateProduct = () => {
+    const tempData = productDetail;
+    tempData.id = productDetail._id;
+    updateProductApi(tempData);
+  };
+
   return (
     <div className="h-[100xh] p-5 flex flex-col px-20">
+      {/* <div
+        className="text-white p-1 px-2 bg-gray-500 hover:bg-gray-600 rounded-md w-fit font-medium flex items-center gap-2 text-sm cursor-pointer"
+        onClick={() => navigate(-1)}
+      >
+        <MdKeyboardBackspace size={20} /> <span>Go Back</span>
+      </div> */}
       <div>
         <h1 className="text-3xl font-bold text-center my-2 italic">
           {data ? "Update Product" : "Add Product"}
@@ -51,10 +67,17 @@ const AddProduct = () => {
         </div>
       </div>
       <div>
-        <OrangeButton
-          title={"Add Product"}
-          onClick={() => handelAddProduct()}
-        />
+        {data ? (
+          <OrangeButton
+            title={"Update Product"}
+            onClick={() => handelUpdateProduct()}
+          />
+        ) : (
+          <OrangeButton
+            title={"Add Product"}
+            onClick={() => handelAddProduct()}
+          />
+        )}
       </div>
     </div>
   );

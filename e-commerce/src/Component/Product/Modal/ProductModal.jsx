@@ -4,6 +4,7 @@ import { LuDot } from "react-icons/lu";
 import AddToCart from "../../Button/AddToCart";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import OrangeButton from "../../Button/OrangeButton";
+import { useNavigate } from "react-router-dom";
 
 const ProductModal = ({
   data,
@@ -12,7 +13,13 @@ const ProductModal = ({
   setCartBoolean,
   addItemToCart,
 }) => {
+  const navigate = useNavigate();
   const userData = JSON.parse(localStorage.getItem("userDetail"));
+
+  const navigateFunction = () => {
+    navigate("/product", { state: data });
+  };
+
   return (
     <div
       className="fixed inset-0 bg-gray-100/70 flex justify-center items-center z-50"
@@ -61,7 +68,10 @@ const ProductModal = ({
               $ {data.price}
             </div>
             {userData.role == "admin" ? (
-              <OrangeButton title={"Update"} />
+              <OrangeButton
+                title={"Update"}
+                onClick={() => navigateFunction()}
+              />
             ) : (
               <AddToCart
                 cartBoolean={cartBoolean}

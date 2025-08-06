@@ -11,7 +11,12 @@ const AddFeature = ({ productDetail, setProductDetail }) => {
       ...productDetail,
       features: [...productDetail.features, features.trim()],
     });
-    setFeatures(""); // clear input after adding
+    setFeatures("");
+  };
+
+  const handelRemoveFeature = () => {
+    setFeatures("");
+    setProductDetail({ ...productDetail, features: [] });
   };
   return (
     <div className="my-2 space-y-1">
@@ -30,8 +35,10 @@ const AddFeature = ({ productDetail, setProductDetail }) => {
         onChange={(e) => setFeatures(e.target.value)}
         className="border outline-none rounded-md p-1 w-full"
       />
-
-      <OrangeButton title="Add +" onClick={handleAddFeature} />
+      <div className="flex gap-4">
+        <OrangeButton title="Add +" onClick={handleAddFeature} />
+        <OrangeButton title="Remove " onClick={() => handelRemoveFeature()} />
+      </div>
     </div>
   );
 };
