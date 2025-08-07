@@ -1,8 +1,21 @@
 import React from "react";
 import totalAmount from "../../CoustomFunction/totalAmount";
-import UserDetails from "./UserDetails";
+import OrangeButton from "../../Button/OrangeButton";
+import { LuDot } from "react-icons/lu";
+import generateCartItem from "../../CoustomFunction/generateCartItem";
+import { useNavigate } from "react-router-dom";
+import addOrderApi from "../../Api/order/addOrderApi";
 
 const CheckOutModal = ({ visible, setVisible, cartData }) => {
+  const navigate = useNavigate();
+  const handelOrder = () => {
+    const tempData = {
+      totalAmount: totalAmount(cartData),
+      items: generateCartItem(cartData),
+    };
+    addOrderApi(tempData, navigate);
+  };
+
   return (
     <div
       className={`${
@@ -21,12 +34,14 @@ const CheckOutModal = ({ visible, setVisible, cartData }) => {
           <div className="text-lg text-gray-600 font-medium">Items:</div>
           {cartData.map((item) => (
             <div
-              className="flex justify-between text-sm text-gray-700"
-              key={item.id}
+              className="flex justify-between text-sm text-gray-700 mt-0.5"
+              key={item._id}
             >
-              <div className="flex-1 font-medium">{item.name}</div>
+              <div className="flex-1 flex items-center font-medium">
+                <LuDot size={20} /> {item.pName}
+              </div>
               <div className="w-14">{item.quantity}</div>
-              <div className="w-16 text-end">{item.caloriesPerServing}</div>
+              <div className="w-16 text-end">{item.price}</div>
             </div>
           ))}
           <div className="flex justify-between font-medium text-gray-800">
@@ -34,8 +49,11 @@ const CheckOutModal = ({ visible, setVisible, cartData }) => {
             <div className="w-16 text-end">${totalAmount(cartData)}</div>
           </div>
         </div>
-        <div>
-          <UserDetails />
+        <div className="flex justify-center border-t border-black my-2 pt-4">
+          <OrangeButton
+            title={"Proceed Checkout"}
+            onClick={() => handelOrder()}
+          />
         </div>
       </div>
     </div>

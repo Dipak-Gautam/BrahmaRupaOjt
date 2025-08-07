@@ -9,7 +9,9 @@ const DeleteAccount = () => {
   };
 
   const handelDelete = () => {
-    deleteUserApi();
+    if (confirm("Are you sure you want to delete account")) {
+      deleteUserApi();
+    }
   };
   return (
     <div className="border bg-slate-100 font-medium flex p-6 m-3 md:mx-10 rounded-md border-gray-300 shadow-lg shadow-gray-700/50 gap-8 hover:cursor-pointer hover:border-gray-400 hover:shadow-black/50 hover:bg-slate-50">
