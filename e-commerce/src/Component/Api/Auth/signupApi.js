@@ -14,6 +14,8 @@ const signupApi = async (userDetail, navigate, setStage, setUserDetail) => {
   if (request.status == 200) {
     localStorage.setItem("token", response.response.token);
     localStorage.setItem("userDetail", JSON.stringify(response.response));
+    localStorage.setItem("prevLogin", "true");
+
     window.location.href = "/";
   } else {
     setUserDetail({

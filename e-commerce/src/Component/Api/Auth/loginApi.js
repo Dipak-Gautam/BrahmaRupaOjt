@@ -12,9 +12,9 @@ const loginApi = async (userInfo, navigate, setErr) => {
   );
   const response = await request.json();
   if (request.status == 200) {
-    console.log("response", response);
     localStorage.setItem("token", response.response.token);
     localStorage.setItem("userDetail", JSON.stringify(response.response));
+    localStorage.setItem("prevLogin", "true");
     window.location.href = "/";
   } else {
     setErr(3);
