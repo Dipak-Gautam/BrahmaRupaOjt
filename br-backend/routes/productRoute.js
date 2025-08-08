@@ -1,6 +1,7 @@
 const express = require("express");
 const route = express.Router();
 const Product = require("../model/productModel");
+const { jwtAuthMiddleWare } = require("../jwt");
 
 route.get("/", async (req, res) => {
   try {
@@ -13,7 +14,7 @@ route.get("/", async (req, res) => {
   }
 });
 
-route.post("/", async (req, res) => {
+route.post("/", jwtAuthMiddleWare, async (req, res) => {
   try {
     const data = req.body;
     const product = new Product(data);
@@ -26,7 +27,7 @@ route.post("/", async (req, res) => {
   }
 });
 
-route.patch("/", async (req, res) => {
+route.patch("/", jwtAuthMiddleWare, async (req, res) => {
   try {
     const { id, ...updatedData } = req.body;
     const response = await Product.findByIdAndUpdate(id, updatedData, {
@@ -41,7 +42,7 @@ route.patch("/", async (req, res) => {
   }
 });
 
-route.delete("/", async (req, res) => {
+route.delete("/", jwtAuthMiddleWare, async (req, res) => {
   try {
     const { id } = req.body;
     await Product.findByIdAndDelete(id);
