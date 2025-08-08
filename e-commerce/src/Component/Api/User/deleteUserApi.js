@@ -1,7 +1,8 @@
 import SecureFetch from "../Auth/ApiConfiguration";
+import mainEndPoint from "../mainEndPoint";
 
 const deleteUserApi = async () => {
-  const request = await SecureFetch("http://localhost:3000/user/", "DELETE", {
+  const request = await SecureFetch(mainEndPoint + "/user/", "DELETE", {
     "content-type": "application/json",
     Authorization: `Bearer ${localStorage.getItem("token")}`,
   });

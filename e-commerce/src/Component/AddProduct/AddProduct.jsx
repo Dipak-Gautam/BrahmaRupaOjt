@@ -9,6 +9,11 @@ import updateProductApi from "../Api/product/updateProductApi";
 
 const AddProduct = () => {
   const navigate = useNavigate();
+  const userData = JSON.parse(localStorage.getItem("userDetail"));
+  if (!userData || userData.role != "admin") {
+    window.location.href = "/";
+    return;
+  }
   const location = useLocation();
   const data = location.state;
   console.log("data from navigate", data);

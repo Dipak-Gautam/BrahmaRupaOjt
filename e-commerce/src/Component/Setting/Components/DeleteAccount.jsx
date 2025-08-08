@@ -4,8 +4,10 @@ import deleteUserApi from "../../Api/User/deleteUserApi";
 
 const DeleteAccount = () => {
   const handelLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/";
+    if (confirm("Are You sure to logout")) {
+      localStorage.removeItem("token");
+      window.location.href = "/";
+    }
   };
 
   const handelDelete = () => {

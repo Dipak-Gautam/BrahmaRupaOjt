@@ -1,7 +1,8 @@
 import SecureFetch from "../Auth/ApiConfiguration";
+import mainEndPoint from "../mainEndPoint";
 
 const getOrderApi = async (setOrderData) => {
-  const request = await SecureFetch("http://localhost:3000/order", "GET", {
+  const request = await SecureFetch(mainEndPoint + "/order", "GET", {
     "content-type": "application/json",
     Authorization: `Bearer ${localStorage.getItem("token")}`,
   });

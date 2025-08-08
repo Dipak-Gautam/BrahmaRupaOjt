@@ -18,7 +18,9 @@ const Card = ({ data }) => {
   };
 
   const handelDelete = () => {
-    deleteProductApi({ id: data._id });
+    if (confirm("Ayr you sure ypu want to delete this Product")) {
+      deleteProductApi({ id: data._id });
+    }
   };
 
   return (

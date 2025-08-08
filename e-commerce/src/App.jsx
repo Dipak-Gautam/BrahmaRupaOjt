@@ -3,16 +3,14 @@ import Categories from "./Component/Categories/Categories";
 import HeroSection from "./Component/HeroSection/HeroSection";
 import NavBar from "./Component/NavBar/NavBar";
 import Product from "./Component/Product/Product";
-import productDataApi from "./Component/Api/productData.api";
-import { data } from "react-router";
+import { useOutletContext } from "react-router";
 
 function App() {
-  const [mainData, setMainData] = useState([]);
+  const mainData = useOutletContext();
   const [productData, setProductData] = useState([]);
   useEffect(() => {
-    productDataApi(setMainData, setProductData);
-  }, []);
-  // console.log("data", productData);
+    setProductData(mainData);
+  }, [mainData]);
   return (
     <div className="p-2 px-5">
       <NavBar />

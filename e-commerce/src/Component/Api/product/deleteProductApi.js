@@ -1,8 +1,9 @@
 import SecureFetch from "../Auth/ApiConfiguration";
+import mainEndPoint from "../mainEndPoint";
 
 const deleteProductApi = async (id) => {
   const request = await SecureFetch(
-    "http://localhost:3000/product",
+    mainEndPoint + "/product",
     "DELETE",
     {
       "content-type": "application/json",
