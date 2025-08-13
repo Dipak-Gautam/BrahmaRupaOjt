@@ -1,7 +1,22 @@
 import React from "react";
 import { LuDot } from "react-icons/lu";
+import updateOrderApi from "../../Api/order/updateOrderApi";
+import cancelOrderApi from "../../Api/order/cancelOrderApi";
 
-const OrderCard = ({ data }) => {
+const OrderCard = ({ data, setOrderData, orderData }) => {
+  const updateOrder = () => {
+    if (data.status == "Delivered") return;
+    if (confirm("Do you Want to mark order as delivered")) {
+      updateOrderApi(data._id, setOrderData, orderData);
+    }
+  };
+
+  const cancelOrder = () => {
+    if (confirm("DO you want to cancel Order?")) {
+      cancelOrderApi(data._id, orderData, setOrderData);
+    }
+  };
+
   return (
     <div className="border  h-fit p-3 rounded-md bg-sky-100 w-60 text-gray-600 text-xs font-medium">
       <div className="flex flex-col items-center gap-2 ">
@@ -34,7 +49,7 @@ const OrderCard = ({ data }) => {
         </div>
         <div className="w-full">
           {data.items.map((item) => (
-            <div className="flex w-full justify-between">
+            <div key={item.itemName} className="flex w-full justify-between">
               <div className="flex gap-1">
                 <LuDot />
                 <p>{item.itemName}</p>
@@ -42,6 +57,25 @@ const OrderCard = ({ data }) => {
               <div>{item.quantity}</div>
             </div>
           ))}
+        </div>
+      </div>
+      <div className="py-2 space-y-1">
+        <div className="w-full bg-[#f445bf] flex items-center justify-center p-1 rounded-md text-white">
+          status : <span className="ml-2">{data.status}</span>
+        </div>
+        <div className="flex justify-between">
+          <div
+            className="w-[40%] cursor-pointer bg-amber-400 flex items-center justify-center p-1 rounded-md text-[10px] "
+            onClick={() => updateOrder()}
+          >
+            {data.status == "Delivered" ? "Delivered" : "  Mark delivered"}
+          </div>
+          <div
+            className="w-[40%] cursor-pointer bg-red-400 flex items-center justify-center p-1 rounded-md text-[10px] "
+            onClick={() => cancelOrder()}
+          >
+            Cancel Order
+          </div>
         </div>
       </div>
     </div>

@@ -25,7 +25,9 @@ const DashboardMain = () => {
       {activeScreen == 1 && (
         <Dashboard orderData={orderData} productData={mainData} />
       )}
-      {activeScreen == 2 && <Order orderData={orderData} />}
+      {activeScreen == 2 && (
+        <Order orderData={orderData} setOrderData={setOrderData} />
+      )}
     </div>
   );
 };
