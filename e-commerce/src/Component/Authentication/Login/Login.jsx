@@ -59,7 +59,7 @@ const Login = ({ setScreen }) => {
       </div>
       {err == 3 && (
         <p className="text-[10px] text-red-500 text-center">
-          Internal server error
+          Invalid User Name or password
         </p>
       )}
     </div>

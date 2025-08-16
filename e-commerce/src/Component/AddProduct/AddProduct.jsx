@@ -16,7 +16,6 @@ const AddProduct = () => {
   }
   const location = useLocation();
   const data = location.state;
-  console.log("data from navigate", data);
   const temp = {
     pName: "",
     features: [],
@@ -39,15 +38,15 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="h-[100xh] p-5 flex flex-col px-20">
+    <div className="h-[100xh] p-2 md:p-5 flex flex-col  md:px-20">
       <div
-        className="text-white p-1 px-2 bg-gray-500 hover:bg-gray-600 rounded-md w-fit font-medium flex items-center gap-2 text-sm cursor-pointer"
+        className="text-white p-1 md:px-2 bg-gray-500 hover:bg-gray-600 rounded-md w-fit font-medium flex items-center gap-2 text-sm cursor-pointer"
         onClick={() => navigate(-1)}
       >
-        <MdKeyboardBackspace size={20} /> <span>Go Back</span>
+        <MdKeyboardBackspace className="md:text-3xl" /> <span>Go Back</span>
       </div>
       <div>
-        <h1 className="text-3xl font-bold text-center my-2 italic">
+        <h1 className="md:text-3xl font-bold text-center my-2 italic">
           {data ? "Update Product" : "Add Product"}
         </h1>
       </div>
