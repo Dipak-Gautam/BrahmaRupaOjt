@@ -27,17 +27,17 @@ const NavBar = () => {
         </div> */}
         {userData.role == "admin" && (
           <NavLink to="/dashboard">
-            <MdDashboard className="text-3xl text-gray-600" />
+            <MdDashboard className="text-2xl md:text-3xl text-gray-600" />
           </NavLink>
         )}
 
         <div>
           <NavLink to="/cart">
-            <MdOutlineShoppingCart className="text-3xl text-gray-600" />
+            <MdOutlineShoppingCart className=" text-2xl md:text-3xl text-gray-600" />
           </NavLink>
         </div>
         <NavLink to={"/setting"}>
-          <MdOutlineSettings className="text-gray-600 text-3xl" />
+          <MdOutlineSettings className="text-gray-600 text-2xl md:text-3xl" />
         </NavLink>
       </div>
     </div>
