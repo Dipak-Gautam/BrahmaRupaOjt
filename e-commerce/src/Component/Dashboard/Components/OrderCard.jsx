@@ -18,7 +18,11 @@ const OrderCard = ({ data, setOrderData, orderData }) => {
   };
 
   return (
-    <div className="border  h-fit p-3 rounded-md bg-sky-100 w-60 text-gray-600 text-xs font-medium">
+    <div
+      className={`border  h-fit p-3 rounded-md  ${
+        data.status == "Delivered" ? "bg-gray-400" : "bg-sky-100"
+      } w-60 text-gray-600 text-xs font-medium`}
+    >
       <div className="flex flex-col items-center gap-2 ">
         <div className="text-sm font-semibold italic text-gray-900">
           Customer Details
@@ -60,7 +64,7 @@ const OrderCard = ({ data, setOrderData, orderData }) => {
         </div>
       </div>
       <div className="py-2 space-y-1">
-        <div className="w-full bg-[#f445bf] flex items-center justify-center p-1 rounded-md text-white">
+        <div className="w-full bg-[#9d4463] flex items-center justify-center p-1 rounded-md text-white">
           status : <span className="ml-2">{data.status}</span>
         </div>
         <div className="flex justify-between">

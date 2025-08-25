@@ -6,6 +6,7 @@ import OrangeButton from "../Button/OrangeButton";
 import addProductApi from "../Api/product/AddProductApi";
 import { MdKeyboardBackspace } from "react-icons/md";
 import updateProductApi from "../Api/product/updateProductApi";
+import UploadImageButton from "../Button/UploadImageButton";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -54,6 +55,9 @@ const AddProduct = () => {
       <div className="flex-1  md:flex gap-10 justify-center items-center">
         <div className="flex flex-col gap-4 justify-center items-center w-[]  md:w-[40%]">
           <Card data={productDetail} />
+          <div className="mb-2">
+            <UploadImageButton />
+          </div>
           <div className=" hidden md:flex  mx-5 font-medium text-gray-500">
             Add a new product or update existing details here to keep your
             catalog accurate and up to date. Make sure to fill in all required
