@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductInputField from "../../InputFields/ProductInputField";
 import AddFeature from "./AddFeature";
 import AddCategory from "./AddCategory";
 
 const AddProductDetailComponent = ({ setProductDetail, productDetail }) => {
+  const [imageFile, setImageFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+    if (file) {
+      // Use URL.createObjectURL instead of FileReader
+      const objectUrl = URL.createObjectURL(file);
+      setProductDetail({ ...productDetail, image: objectUrl });
+    }
+  };
+
   return (
     <div>
       <ProductInputField
@@ -40,12 +52,20 @@ const AddProductDetailComponent = ({ setProductDetail, productDetail }) => {
         name={"description"}
         productDetail={productDetail}
       />
-      <ProductInputField
-        setProductDetail={setProductDetail}
-        label={"Image"}
-        name={"image"}
-        productDetail={productDetail}
-      />
+      <div className="my-2">
+        <input
+          type="file"
+          className="hidden"
+          id="image-input"
+          onChange={handleFileChange}
+        />
+        <label
+          htmlFor="image-input"
+          className="p-1 px-2 text-xs font-medium text-white rounded-md border border-green-700 bg-green-500 hover:bg-green-600  cursor-pointer"
+        >
+          Upload Image
+        </label>
+      </div>
     </div>
   );
 };
