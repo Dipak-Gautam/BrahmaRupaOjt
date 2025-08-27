@@ -3,14 +3,15 @@ import ProductInputField from "../../InputFields/ProductInputField";
 import AddFeature from "./AddFeature";
 import AddCategory from "./AddCategory";
 
-const AddProductDetailComponent = ({ setProductDetail, productDetail }) => {
-  const [imageFile, setImageFile] = useState(null);
-
+const AddProductDetailComponent = ({
+  setProductDetail,
+  productDetail,
+  setImageFile,
+}) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
     if (file) {
-      // Use URL.createObjectURL instead of FileReader
       const objectUrl = URL.createObjectURL(file);
       setProductDetail({ ...productDetail, image: objectUrl });
     }

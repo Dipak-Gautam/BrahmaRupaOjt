@@ -14,6 +14,7 @@ const AddProduct = () => {
     window.location.href = "/";
     return;
   }
+  const [imageFile, setImageFile] = useState(null);
   const location = useLocation();
   const data = location.state;
   const temp = {
@@ -28,7 +29,7 @@ const AddProduct = () => {
 
   const [productDetail, setProductDetail] = useState(data ? data : temp);
   const handelAddProduct = () => {
-    addProductApi(productDetail, setProductDetail);
+    addProductApi(productDetail, setProductDetail, imageFile);
   };
 
   const handelUpdateProduct = () => {
@@ -68,6 +69,7 @@ const AddProduct = () => {
           <AddProductDetailComponent
             setProductDetail={setProductDetail}
             productDetail={productDetail}
+            setImageFile={setImageFile}
           />
         </div>
       </div>

@@ -1,16 +1,18 @@
-import SecureFetch from "../Auth/ApiConfiguration";
 import mainEndPoint from "../mainEndPoint";
+const addProductApi = async (productDetail, setProductDetail, imageFile) => {
+  console.log("image file from api", imageFile);
+  const formData = new FormData();
+  formData.append("file", imageFile);
+  formData.append("productDetail", JSON.stringify(productDetail));
 
-const addProductApi = async (productDetail, setProductDetail) => {
-  const request = await SecureFetch(
-    mainEndPoint + "/product",
-    "POST",
-    {
-      "content-type": "application/json",
+  const request = await fetch(mainEndPoint + "/product", {
+    method: "POST",
+    body: formData,
+    headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    productDetail
-  );
+  });
+
   if (request.status == 200) {
     alert("Product added sucessfully");
     setProductDetail({

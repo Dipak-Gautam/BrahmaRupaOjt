@@ -26,6 +26,23 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
   },
+  cloudinary: {
+    public_id: {
+      type: String,
+    },
+    asset_id: {
+      type: String,
+    },
+    url: {
+      type: String,
+    },
+    secure_url: {
+      type: String,
+    },
+    asset_folder: {
+      type: String,
+    },
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);
