@@ -6,7 +6,7 @@ import OrangeButton from "../Button/OrangeButton";
 import addProductApi from "../Api/product/AddProductApi";
 import { MdKeyboardBackspace } from "react-icons/md";
 import updateProductApi from "../Api/product/updateProductApi";
-import { DotLoader, PulseLoader, SyncLoader } from "react-spinners";
+import { DotLoader, PulseLoader } from "react-spinners";
 
 const AddProduct = () => {
   const navigate = useNavigate();
