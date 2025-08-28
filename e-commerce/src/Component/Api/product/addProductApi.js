@@ -1,5 +1,10 @@
 import mainEndPoint from "../mainEndPoint";
-const addProductApi = async (productDetail, setProductDetail, imageFile) => {
+const addProductApi = async (
+  productDetail,
+  setProductDetail,
+  imageFile,
+  setLoading
+) => {
   console.log("image file from api", imageFile);
   const formData = new FormData();
   formData.append("file", imageFile);
@@ -27,5 +32,6 @@ const addProductApi = async (productDetail, setProductDetail, imageFile) => {
   } else {
     alert("something went wrong please check Name and image ");
   }
+  setLoading(false);
 };
 export default addProductApi;

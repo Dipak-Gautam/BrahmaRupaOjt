@@ -7,6 +7,7 @@ const AddProductDetailComponent = ({
   setProductDetail,
   productDetail,
   setImageFile,
+  imageFile,
 }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -24,6 +25,7 @@ const AddProductDetailComponent = ({
         label={"Name"}
         name={"pName"}
         productDetail={productDetail}
+        message={"Provide Product name"}
       />
 
       <AddFeature
@@ -66,6 +68,15 @@ const AddProductDetailComponent = ({
         >
           Upload Image
         </label>
+        <div
+          className={`${
+            imageFile == null
+              ? "flex text-[10px] my-0.5 text-red-500"
+              : "hidden"
+          }`}
+        >
+          upload an image
+        </div>
       </div>
     </div>
   );
