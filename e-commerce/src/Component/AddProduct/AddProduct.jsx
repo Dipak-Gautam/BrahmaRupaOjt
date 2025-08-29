@@ -31,6 +31,8 @@ const AddProduct = () => {
 
   const [productDetail, setProductDetail] = useState(data ? data : temp);
   const handelAddProduct = () => {
+    if (imageFile == null || imageFile == undefined) return;
+    if (temp.pName == "" || temp.image == "") return;
     setLoading(true);
     addProductApi(productDetail, setProductDetail, imageFile, setLoading);
   };
