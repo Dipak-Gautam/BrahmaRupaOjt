@@ -54,6 +54,7 @@ const AddProductDetailComponent = ({
         label={"Description"}
         name={"description"}
         productDetail={productDetail}
+        message={"Please provide a description"}
       />
       <div className="my-2">
         <input
