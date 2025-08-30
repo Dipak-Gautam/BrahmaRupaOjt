@@ -8,6 +8,7 @@ const AddProductDetailComponent = ({
   productDetail,
   setImageFile,
   imageFile,
+  data,
 }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -56,29 +57,31 @@ const AddProductDetailComponent = ({
         productDetail={productDetail}
         message={"Please provide a description"}
       />
-      <div className="my-2">
-        <input
-          type="file"
-          className="hidden"
-          id="image-input"
-          onChange={handleFileChange}
-        />
-        <label
-          htmlFor="image-input"
-          className="p-1 px-2 text-xs font-medium text-white rounded-md border border-green-700 bg-green-500 hover:bg-green-600  cursor-pointer"
-        >
-          Upload Image
-        </label>
-        <div
-          className={`${
-            imageFile == null
-              ? "flex text-[10px] my-0.5 text-red-500"
-              : "hidden"
-          }`}
-        >
-          upload an image
+      {!data && (
+        <div className="my-2">
+          <input
+            type="file"
+            className="hidden"
+            id="image-input"
+            onChange={handleFileChange}
+          />
+          <label
+            htmlFor="image-input"
+            className="p-1 px-2 text-xs font-medium text-white rounded-md border border-green-700 bg-green-500 hover:bg-green-600  cursor-pointer"
+          >
+            Upload Image
+          </label>
+          <div
+            className={`${
+              imageFile == null
+                ? "flex text-[10px] my-0.5 text-red-500"
+                : "hidden"
+            }`}
+          >
+            upload an image
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

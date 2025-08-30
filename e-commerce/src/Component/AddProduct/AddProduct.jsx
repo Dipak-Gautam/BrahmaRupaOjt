@@ -67,9 +67,11 @@ const AddProduct = () => {
         <div className="flex-1  md:flex gap-10 justify-center items-center">
           <div className="flex flex-col gap-4 justify-center items-center w-[]  md:w-[40%]">
             <Card data={productDetail} />
-            <div className="text-sm font-medium text-white bg-gray-600 rounded-md  p-1 px-2 hover:bg-gray-700 cursor-pointer hover:shadow-lg">
-              Update Image
-            </div>
+            {data && (
+              <div className="text-sm font-medium text-white bg-gray-600 rounded-md  p-1 px-2 hover:bg-gray-700 cursor-pointer hover:shadow-lg">
+                Update Image
+              </div>
+            )}
 
             <div className=" hidden md:flex  mx-5 font-medium text-gray-500">
               Add a new product or update existing details here to keep your
@@ -86,6 +88,7 @@ const AddProduct = () => {
               productDetail={productDetail}
               setImageFile={setImageFile}
               imageFile={imageFile}
+              data={data}
             />
           </div>
         </div>
