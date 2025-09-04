@@ -6,7 +6,9 @@ const AddToCart = ({ cartBoolean, ...props }) => {
     <div
       {...props}
       className={`flex  ${
-        cartBoolean ? "bg-gray-500" : "bg-orange-500"
+        cartBoolean
+          ? "bg-gray-500"
+          : "bg-orange-500 hover:bg-orange-600 transition-colors duration-500"
       } p-1 px-3 gap-1 text-white font-medium rounded-md items-center justify-center cursor-pointer`}
     >
       <MdOutlineShoppingCart className="text-xl" />
