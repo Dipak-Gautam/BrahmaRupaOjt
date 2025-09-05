@@ -26,7 +26,7 @@ const Card = ({ data }) => {
   return (
     <>
       <div
-        className="my-2 flex flex-col items-center justify-center border border-gray-400  rounded-lg shadow-md w-72 overflow-hidden gap-1 hover:shadow-lg hover:shadow-black/50 transition-shadow duration-300 hover:bg-slate-50 relative "
+        className="my-2 flex flex-col items-center justify-center border border-gray-400  rounded-lg shadow-md w-72 overflow-hidden gap-1 hover:shadow-lg hover:shadow-black/50 transition-shadow duration-300 hover:bg-slate-50 relative cursor-default "
         onClick={() => setShowModal(true)}
       >
         {userData.role == "admin" && (
