@@ -31,7 +31,7 @@ const Card = ({ data }) => {
       >
         {userData.role == "admin" && (
           <div
-            className="w-[25px] h-[25px] bg-red-500 rounded-full flex justify-center items-center absolute top-1 right-1"
+            className="w-[25px] h-[25px] bg-red-500 rounded-full flex justify-center items-center absolute top-1 right-1 cursor-pointer"
             onClick={(e) => {
               e.stopPropagation(), handelDelete();
             }}
