@@ -31,7 +31,7 @@ const Categories = ({ mainData, setProductData }) => {
             }}
           >
             <div
-              className={`bg-gray-300 border border-gray-300 rounded-full p-1 hover:border-gray-700 hover:bg-gray-700 transition-all duration-300 ${
+              className={`bg-gray-300 border border-gray-300 rounded-full p-1 hover:border-gray-700 hover:bg-gray-700 transition-all duration-500 hover:shadow-md shadow-orange-300 ${
                 item.name == pick &&
                 "border-2 border-orange-500 bg-gray-600 shadow-md shadow-black/50"
               }`}
