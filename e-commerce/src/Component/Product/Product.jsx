@@ -9,9 +9,10 @@ const Product = ({ productData }) => {
         <Card data={item} key={item._id} />
       ))}
       {productData.length == 0 && (
-        <div className="">
+        <div className=" flex flex-col text-gray-500 font-medium text-sm justify-center  items-center my-5 ">
           <FadeLoader />
-          <div>The Product are loading Please Be patient</div>
+          <div className="mt-5">The Product are loading Please be patient</div>
+          <p className=" text-xs">The render server are cold loading...</p>
         </div>
       )}
     </div>
